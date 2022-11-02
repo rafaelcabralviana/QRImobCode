@@ -1,0 +1,10 @@
+django-autoslug
+django-model-utils
+factory-boy
+ipython
+pillow
+psycopg2
+django-allauth
+django-import-export
+mod-wsgi
+django-crispy-forms

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ product.codbem }}{% endblock title %}
+
+{% block content %}
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-lg-3 mb-3 mb-lg-0">
+            {% if product.image %}
+            <img class="container-fluid" src="/media/{{product.image}}" alt="">
+            {% else %}
+            <img class="card-img-top" src="{% static 'base/no_image.jpg' %}" alt="">
+            {% endif %}
+        </div>
+        <div class="col-lg-9">
+            <h5 class="font-weight-bold">Patrimônio: {{ product.codbem }}</h5>
+            <p>{{ product.descricao }}</p>
+            <p>Série/Tagservice : {{ product.tag }}</p>
+            <p>Categoria : {{ product.categoria.name }}</p>
+
+
+            
+            <h6 class="font-weight-bold">Localização</h6>
+            <p>{{ product.local }}</p>
+            <p>{{ product.setor }}</p>
+
+            <p>
+
+                {% if user.is_superuser %}
+                Voltar para : 
+                <a class="text-decoration-none" href="{{ product.categoria.get_absolute_url }}">
+                    {{ product.categoria.name }}
+                </a>
+                
+            </p>
+
+            <li class="nav-item">
+                <a href="{% url 'bens:editbem' slug=product.slug %}" class="nav-link lead mr-4 font-weight-bold">Editar</a>
+
+                {% endif %}
+
+            <li class="nav-item">
+                <a href="{% url 'mensagens:solicitaruso' %}" class="nav-link lead mr-4 font-weight-bold">Solicitar Uso</a>
+            <li class="nav-item">
+                <a href="{% url 'mensagens:informarerro' %}" class="nav-link lead mr-4 font-weight-bold">Informar Erro</a>
+    
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

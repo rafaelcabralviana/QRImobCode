@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} Editando {{ bem.slug }} {% endblock %}
+
+{% block content %}
+
+{% if user.is_superuser %}
+
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-lg-3 mb-3 mb-lg-0">
+            {% if bem.image %}
+            <img class="container-fluid" src="/media/{{bem.image}}" alt="">
+            {% else %}
+            <img class="card-img-top" src="{% static 'base/no_image.jpg' %}" alt="">
+            {% endif %}
+        </div>  
+    
+    <form method='POST' action='{{ action_url }}' enctype='multipart/form-data'>
+        {% csrf_token %}
+    <div class="offset-1 col-10 list-div">
+        <h3>EDITANDO PATRIMÔNIO : </h3>
+        <h5> {{ bem.codbem }} </h5>
+        <h5> {{ bem.descricao }}</h5>
+        {{ form.categoria|as_crispy_field }}
+        {{ form.codbem|as_crispy_field }}
+        {{ form.descricao|as_crispy_field }}
+        {{ form.tag|as_crispy_field }}
+        {{ form.setor|as_crispy_field }}
+        {{ form.local|as_crispy_field }}
+        {{ form.image|as_crispy_field }}
+        {{ form.is_available|as_crispy_field }}
+
+        
+        <button type="submit" class="btn btn-primary">ENVIAR</button>
+
+    </form>
+
+
+</div>
+{% else %}
+<h1>SEM PERMISSÃO PARA EDITAR</h1>
+{% endif %}
+{% endblock %}
+
