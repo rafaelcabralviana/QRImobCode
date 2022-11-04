@@ -26,9 +26,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a href="{% url 'bens:filtros' %}" class="nav-link lead mr-4 font-weight-bold">Filtros</a>
+
+                    <li class="nav-item">
+                        <a href="{% url 'bens:totais_bens' %}" class="nav-link lead mr-4 font-weight-bold">Totais</a>
                     
                     <li class="nav-item">
                         <a href="{% url 'bens:list' %}" class="nav-link lead mr-4 font-weight-bold">Bens</a>
+
                     
                     <li class="nav-item">
                         <a href="{% url 'admin:index' %}" class="nav-link lead mr-4 font-weight-bold">Admin</a>

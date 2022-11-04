@@ -9,7 +9,7 @@
 {% block content %}
 
 {% if user.is_superuser %}
-
+{% include 'menssagens.html' %}
 
 <div class="container my-3">
     <div class="row">
@@ -25,13 +25,14 @@
         {% csrf_token %}
     <div class="offset-1 col-10 list-div">
         <h3>EDITANDO PATRIMÔNIO : </h3>
-        <h5> {{ bem.codbem }} </h5>
+        <h5> {{ bem.codigo }} </h5>
         <h5> {{ bem.descricao }}</h5>
         {{ form.categoria|as_crispy_field }}
-        {{ form.codbem|as_crispy_field }}
+        {{ form.codigo|as_crispy_field }}
         {{ form.descricao|as_crispy_field }}
         {{ form.tag|as_crispy_field }}
         {{ form.setor|as_crispy_field }}
+        {{ form.responsavel|as_crispy_field }}
         {{ form.local|as_crispy_field }}
         {{ form.image|as_crispy_field }}
         {{ form.is_available|as_crispy_field }}

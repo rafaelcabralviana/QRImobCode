@@ -4,8 +4,20 @@
 
 {% block title %}{{ product.codbem }}{% endblock title %}
 
+<html>
+  <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--Bootstrap CSS-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+    
+
+
 {% block content %}
 
+{% include 'menssagens.html' %}
 <div class="container my-3">
     <div class="row">
         <div class="col-lg-3 mb-3 mb-lg-0">
@@ -16,13 +28,18 @@
             {% endif %}
         </div>
         <div class="col-lg-9">
-            <h5 class="font-weight-bold">Patrimônio: {{ product.codbem }}</h5>
+            
+            <h5 class="font-weight-bold">PATRIMÔNIO: {{ product.codigo }}</h5>
             <p>{{ product.descricao }}</p>
             <p>Série/Tagservice : {{ product.tag }}</p>
             <p>Categoria : {{ product.categoria.name }}</p>
 
+            {% if product.responsavel %}
+            <h6 class="font-weight-bold">Coordenador Responsável </h6>
+            <p>{{ product.responsavel }}</p>
+            {% else %}
 
-            
+            {% endif %}
             <h6 class="font-weight-bold">Localização</h6>
             <p>{{ product.local }}</p>
             <p>{{ product.setor }}</p>
@@ -38,14 +55,14 @@
             </p>
 
             <li class="nav-item">
-                <a href="{% url 'bens:editbem' slug=product.slug %}" class="nav-link lead mr-4 font-weight-bold">Editar</a>
+                <a href="{{ product.get_absolute_url_editar }}" class="nav-link lead mr-4 font-weight-bold">Editar</a>
 
                 {% endif %}
 
             <li class="nav-item">
-                <a href="{% url 'mensagens:solicitaruso' %}" class="nav-link lead mr-4 font-weight-bold">Solicitar Uso</a>
+                <a href="{% url 'mensagens:solicitaruso' slug=product.slug %}" class="nav-link lead mr-4 font-weight-bold">Solicitar Uso</a>
             <li class="nav-item">
-                <a href="{% url 'mensagens:informarerro' %}" class="nav-link lead mr-4 font-weight-bold">Informar Erro</a>
+                <a href="{% url 'mensagens:informarerro' slug=product.slug %}" class="nav-link lead mr-4 font-weight-bold">Informar Erro</a>
     
         </div>
     </div>

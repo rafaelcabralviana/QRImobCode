@@ -5,7 +5,9 @@ from .models import Uso, Erro
 class UsoForm(forms.ModelForm):
     class Meta:
         model = Uso
-        fields = "__all__"
+        fields = ['bem', 'email', 'motivo', 'mensagem', 'image']
+
+
 
 class ErroForm(forms.ModelForm):
     class Meta:

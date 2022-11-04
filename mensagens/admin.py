@@ -4,7 +4,7 @@ from mensagens.models import Uso, Erro
 # Register your models here.
 @admin.register(Uso)
 class UsoAdmin(admin.ModelAdmin):
-    list_display = ["bem","email", "motivo"]
+    list_display = ["bem", "motivo", "email"]
 
 
 @admin.register(Erro)

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}Sobre Nós{% endblock title %}
+
+{% block content %}
+
+
+
+<h4>Totais por Categoria</h4>
+
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    
+    <tr>
+      <th>CATEGORIA</th>
+      <th>QTD. BENS</th>
+
+       
+    </tr>
+    
+    {% for saldo in saldos %}
+    <tr>
+      <a href=""></a>
+      
+      <td>{{ saldo.name }}</a></td>
+
+      <td>{{ saldo.qtd_bens }}</td>
+      
+    
+    </tr>
+    
+    {% endfor %}
+
+    
+    
+    <tr>
+      <a href=""></a>
+      
+      <td></a></td>
+
+      <td><h6>{{ somas.qt_total }}</h6></td>
+      
+    
+    
+    </tr>
+    
+
+  
+
+
+{% endblock content %}

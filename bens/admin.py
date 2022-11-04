@@ -6,11 +6,16 @@ from .models import Category, Product
 admin.site.site_header = 'PATRIMÔNIO EDIÇÕES ADMIN'
 admin.site.site_title = 'PATRIMÔNIO EDIÇÕES'
 
+
 class PropertyAdminResource(resources.ModelResource):
 
     class Meta:
         model = Product
-        import_id_fields = ["codbem", "local", "setor", "tag", "descricao", ]
+        import_id_fields = ("codigo",)
+        skip_unchanged = True
+        report_skipped = True
+        fields = ["categoria", "codigo", "local", "setor", "tag", "descricao", "responsavel" ]
+        
         exclude = ("id", "created", "modified", "slug", "image", "is_available", )
 
 @admin.register(Category)
@@ -25,8 +30,8 @@ class CategoryAdmin(admin.ModelAdmin):
 #import_export + ADMIN
 class TestappImportExport(ImportExportModelAdmin):
     resource_class = PropertyAdminResource
-    list_display = ["codbem", "descricao", "categoria", "local", "image"]
-    search_fields = ["codbem"]
+    list_display = ["codigo", "slug", "descricao", "categoria", "local", "image"]
+    search_fields = ["codigo"]
     pass
     #resource_class = PropertyAdminResource
 

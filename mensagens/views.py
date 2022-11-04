@@ -1,47 +1,80 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from bens.models import Product
+from django.contrib import messages
 from .models import Uso, Erro
 from .forms import UsoForm, ErroForm
 
 # Create your views here.
-def form_solicitaruso(request):
-    # if this is a POST request we need to process the form data
-    if request.method == "POST":
-        # create a form instance and populate it with data from the request:
+def form_solicitaruso(request, slug):
+    bem_solicitado = get_object_or_404(Product, slug=slug)    
+    if request.method == "GET":
+        
+        uso = UsoForm(initial={'bem': bem_solicitado})
+        
+
+        context = {
+
+            "uso": uso,
+            "bem_solicitado": bem_solicitado,
+
+        }
+        
+
+        return render(request, 'bens\solicitar_uso.html', context)
+
+    elif request.method == "POST":
+        
         uso = UsoForm(request.POST)
-        # check whether it's valid:
+        
+
         if uso.is_valid():
-            # process the data in form.cleaned_data as required
-            
+
             uso.save()
-            uso = UsoForm()
             
-            # ...
-            # redirect to a new URL:
-            return render(request, "bens/solicitar_uso.html", {"uso": uso})
+            messages.success(request, "SOLICITAÇÃO ENVIADA COM SUCESSO." ) 
+            return redirect(bem_solicitado)
+             
+        else:
+            context = {
+                "uso": uso,
+                
+                
+            }
+            return render(request, 'bens\solicitar_uso.html', context)
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        uso = UsoForm()
 
-    return render(request, "bens/solicitar_uso.html", {"uso": uso})
+def form_informarerro(request, slug):
+    bem_solicitado = get_object_or_404(Product, slug=slug)    
+    if request.method == "GET":
+        
+        erro_form = ErroForm(initial={'bem': bem_solicitado})
+        
 
-def form_informarerro(request):
-        # if this is a POST request we need to process the form data
-    if request.method == "POST":
-        # create a form instance and populate it with data from the request:
-        erro = ErroForm(request.POST)
-        # check whether it's valid:
-        if erro.is_valid():
-            # process the data in form.cleaned_data as required
-            erro.save()
-            erro = ErroForm()
-            # ...
-            # redirect to a new URL:
-            return render(request, "bens/informar_erro.html", {"erro": erro})
+        context = {
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        erro = ErroForm()
+            "erro_form": erro_form,
+            "bem_solicitado": bem_solicitado,
 
-    return render(request, "bens/informar_erro.html", {"erro": erro})
+        }
+        
+
+        return render(request, 'bens\informar_erro.html', context)
+
+    elif request.method == "POST":
+        
+        erro_form = ErroForm(request.POST)
+        
+
+        if erro_form.is_valid():
+
+            erro_form.save()
+            messages.success(request, "INFORMAÇÃO ENVIADA COM SUCESSO." ) 
+            return redirect(bem_solicitado)
+        else:
+
+            context = {
+                "erro_form": erro_form,
+                
+                
+            }
+            return render(request, 'bens\informar_erro.html', context)

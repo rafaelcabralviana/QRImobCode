@@ -47,12 +47,15 @@ Bens
                     </a>
 
                     <div class="card-body d-flex flex-column justify-content-between">
+
+                        <a class="text-decoration-none text-dark" href="{{ product.get_absolute_url }}">
+                            <p class="card-text font-weight-bold">PATRIMÔNIO: {{ product.codigo }}</p>
+                        </a>
+
                         <a class="text-decoration-none text-dark" href="{{ product.get_absolute_url }}">
                             <h7 class="card-title">{{ product.descricao }}</h7>
                         </a>
-                        <a class="text-decoration-none text-dark" href="{{ product.get_absolute_url }}">
-                            <p class="card-text font-weight-bold">Patrimonio : {{ product.codbem }}</p>
-                        </a>
+
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:"4" and not forloop.last %}
