@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "users",
     "bens",
     "mensagens",
+    "filtros",
 
 ]
 
@@ -168,7 +169,13 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',    
 ]
+ACCOUNT_ADAPTER = 'users.adapter.CustomAccountAdapter'
+ACCOUNT_ALLOW_SIGNUPS = False
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+ACCOUNT_SESSION_REMEMBER = True
 
+#________________________________________________________
 
 INTERNAL_IPS = [
     # ...
@@ -184,3 +191,8 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
+
+# A custom variable we created to tell the CustomAccountAdapter whether to
+# allow signups.
+ACCOUNT_ALLOW_SIGNUPS = False

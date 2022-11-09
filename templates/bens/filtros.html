@@ -11,41 +11,56 @@
 {% if user.is_superuser %}
 
 
-<input class="form-control" id="myInput" type="text" placeholder="Search..">
-<table>
-    <thead>
-        <tr>
-            <th>Codigo Patrimonio</th>
-            <th>Descrição</th>
-            <th>Local</th>
-            <th>Setor</th>
-       
-        </tr>
-    </thead>
-    <tbody id="myTable">
-        {% for item in query_results %}
-        <tr>
-            <td>{{ listing_filter.form.local }}</td>
-            
-   
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <form method="get">
+    {{ listing_filter.form }}
+        <input type="submit" />
+    </form>
+    
+    <div class="table-responsive">
+        <table class="table table-striped">
+          
+          <tr>
+            <th>CODIGO</th>
+            <th>DESCRICAO</th>
+            <th>LOCAL</th>
+            <th>SETOR</th>
+      
+             
+          </tr>
 
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
+          {% for obj in listing_filter.qs %}
+      <tr>
+        <a href=""></a>
+        
+        <td>{{ obj.codigo }}</td>
+  
+        <td>{{ obj.descricao }}</td>
+
+        <td>{{ obj.local }}</td>
+
+        <td>{{ obj.setor }}</td>
+        
+      
+      </tr>
+      
+      {% endfor %}
+
+      <tr>
+        <a href=""></a>
+        
+        <td></a></td>
+  
+        <td><h6>{{ obj.somas }}</h6></td>
+        
+      
+      
+      </tr>
 
 
 {% else %}
 <h1>SEM PERMISSÃO PARA VISUALIZAR</h1>
 {% endif %}
 {% endblock %}
+
+
+

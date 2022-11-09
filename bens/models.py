@@ -72,6 +72,15 @@ class Product(TimeStampedModel):
     def get_absolute_url(self):
         return reverse("bens:detail", kwargs={"slug": self.slug})
     
+    def get_absolute_url_imagem(self):
+        return reverse("bens:imagembem", kwargs={"slug": self.slug})
+    
+    def get_absolute_url_infouso(self):
+        return reverse("mensagens:solicitaruso", kwargs={"slug": self.slug})
+
+    def get_absolute_url_infoerro(self):
+        return reverse("mensagens:informarerro", kwargs={"slug": self.slug})
+    
     def get_absolute_url_editar(self):
         return reverse("bens:editbem", kwargs={"slug": self.slug})
 

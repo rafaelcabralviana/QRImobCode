@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% if user.is_superuser %}
+{% if user.is_authenticated %}
 {% include 'menssagens.html' %}
 
 <div class="container my-3">
@@ -24,20 +24,21 @@
     <form method='POST' action='{{ action_url }}' enctype='multipart/form-data'>
         {% csrf_token %}
     <div class="offset-1 col-10 list-div">
-        <h3>EDITANDO PATRIMÔNIO : </h3>
+        <h3>IMAGEM PATRIMÔNIO : </h3>
+        {{ form.image|as_crispy_field }}
+
         <h5> {{ bem.codigo }} </h5>
         <h5> {{ bem.descricao }}</h5>
-        {{ form.categoria|as_crispy_field }}
-        {{ form.codigo|as_crispy_field }}
-        {{ form.descricao|as_crispy_field }}
-        {{ form.tag|as_crispy_field }}
-        {{ form.setor|as_crispy_field }}
-        {{ form.responsavel|as_crispy_field }}
-        {{ form.local|as_crispy_field }}
+        {{ form.categoria.as_hidden }}
+        {{ form.codigo.as_hidden }}
+        {{ form.descricao.as_hidden }}
+        {{ form.tag.as_hidden }}
+        {{ form.setor.as_hidden }}
+        {{ form.responsavel.as_hidden }}
+        {{ form.local.as_hidden }}
+        {{ form.is_available.as_hidden }}
         
-        {{ form.is_available|as_crispy_field }}
         
-        {{ form.image|as_crispy_field }}
 
         
         <button type="submit" class="btn btn-primary">ENVIAR</button>

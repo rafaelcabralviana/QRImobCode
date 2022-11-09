@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Sair{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <section id="featured" class="content-section">
+        <div class="section-heading">
+            <h1>Logout<br><em></em></h1>
+       
+        </div>
+    <h2></h2>
+    <p></p>
+    <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Sair</button>
+    </form>
+
+
+
+
+    <section class="footer">
+
+      </section>
+      </div>
+{% endblock %}

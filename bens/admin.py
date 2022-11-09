@@ -30,7 +30,7 @@ class CategoryAdmin(admin.ModelAdmin):
 #import_export + ADMIN
 class TestappImportExport(ImportExportModelAdmin):
     resource_class = PropertyAdminResource
-    list_display = ["codigo", "slug", "descricao", "categoria", "local", "image"]
+    list_display = ["codigo", "slug", "descricao", "categoria", "local", "setor", "image"]
     search_fields = ["codigo"]
     pass
     #resource_class = PropertyAdminResource

@@ -23,7 +23,7 @@ urlpatterns = [
     #django admin
     path('admin/', admin.site.urls),
     #usermanagement - register e login desativados
-    #path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
     #outros
     path('', include('bens.urls')),
     path('mensagem/', include('mensagens.urls')),

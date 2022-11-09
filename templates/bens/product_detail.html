@@ -53,16 +53,21 @@
                 </a>
                 
             </p>
-
+              
             <li class="nav-item">
                 <a href="{{ product.get_absolute_url_editar }}" class="nav-link lead mr-4 font-weight-bold">Editar</a>
 
-                {% endif %}
+            {% endif %}
 
+            {% if user.is_authenticated %}
             <li class="nav-item">
-                <a href="{% url 'mensagens:solicitaruso' slug=product.slug %}" class="nav-link lead mr-4 font-weight-bold">Solicitar Uso</a>
+                <a href="{{ product.get_absolute_url_imagem }}" class="nav-link lead mr-4 font-weight-bold">Foto</a>
+            {% endif %}  
+            
             <li class="nav-item">
-                <a href="{% url 'mensagens:informarerro' slug=product.slug %}" class="nav-link lead mr-4 font-weight-bold">Informar Erro</a>
+                <a href="{{ product.get_absolute_url_infouso }}" class="nav-link lead mr-4 font-weight-bold">Solicitar Uso</a>
+            <li class="nav-item">
+                <a href="{{ product.get_absolute_url_infoerro }}" class="nav-link lead mr-4 font-weight-bold">Informar Erro</a>
     
         </div>
     </div>
