@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+from decouple import config 
 
 from pathlib import Path
 
@@ -24,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-&az4#-=lhdbzyv**h-&mo!x)94r_ud8dl&blz6)n4@3q%0_f&x"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool )
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -95,15 +96,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'qrimobcode',
+        'NAME': config('POSTGRES_NAME'),
 
-        'USER': 'postgres',
+        'USER': config('POSTGRES_USER'),
 
-        'PASSWORD': '4824001',
+        'PASSWORD': config('POSTGRES_PASSWORD'),
 
-        
-
-        'PORT': '5432',
+        'PORT': config('DBPORT'),
     }
 }
 
