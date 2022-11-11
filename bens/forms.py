@@ -15,6 +15,8 @@ class ImagemForm(forms.ModelForm):
         self.fields["setor"].disabled = True
         self.fields["local"].disabled = True
         self.fields["responsavel"].disabled = True
+        self.fields["data_inicial"].disabled = True
+        self.fields["data_final"].disabled = True
         self.fields["is_available"].disabled = True
 
 class BensForm(forms.ModelForm):

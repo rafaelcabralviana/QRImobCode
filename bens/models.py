@@ -3,6 +3,8 @@ from django.db import models
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
 from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import date
+from dateutil.rrule import rrule, MONTHLY
 
 #diretorio- arquivo foto
 def user_directory_path(instance, filename):
@@ -50,13 +52,14 @@ class Product(TimeStampedModel):
     setor = models.CharField(max_length=255, blank=True, null=True)
     local = models.CharField(max_length=255, blank=True, null=True)
     responsavel = models.CharField(max_length=255, blank=True, null=True)
+    data_inicial = models.DateField(blank=True, null=True)
+    data_final = models.DateField(blank=True, null=True)
     slug = AutoSlugField(unique=True, always_update=False, populate_from="codigo")
     image = models.ImageField(upload_to=user_directory_path, blank=True)
     
     is_available = models.BooleanField(default=True)
     
-    
-
+   
     objects = models.Manager()
     available = AvailableManager()
 
@@ -84,4 +87,14 @@ class Product(TimeStampedModel):
     def get_absolute_url_editar(self):
         return reverse("bens:editbem", kwargs={"slug": self.slug})
 
+    @property
+    def dt_inicial(self):
+        #hoje = date.today()
+        #dt_inicio = abs((hoje - self.data_inicial))
+        #meses = str(dt_inicio).split(",", 3)[0]
+
+        return 27
+    @property
+    def dt_final(self):
+        return 33
 Product.objects.last

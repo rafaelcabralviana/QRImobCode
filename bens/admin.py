@@ -14,7 +14,8 @@ class PropertyAdminResource(resources.ModelResource):
         import_id_fields = ("codigo",)
         skip_unchanged = True
         report_skipped = True
-        fields = ["categoria", "codigo", "local", "setor", "tag", "descricao", "responsavel" ]
+        
+        fields = ["categoria", "codigo", "local", "setor", "tag", "descricao", "responsavel", "data_inicial", "data_final"]
         
         exclude = ("id", "created", "modified", "slug", "image", "is_available", )
 

@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from decouple import config 
 
+from django.conf.global_settings import DATETIME_INPUT_FORMATS
+
+
 from pathlib import Path
 
 from django.contrib.messages import constants as messages
@@ -28,7 +31,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=False, cast=bool )
+DEBUG = config("DEBUG", default=True, cast=bool )
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -36,7 +40,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    "QRImobCode",
+    "whitenoise.runserver_nostatic",
+    
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -44,22 +49,27 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_filters",
+    
     #3RD PARTY
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "import_export",
     "crispy_forms",
+    "win32com",
+    
     #MyAPPS
     "users",
     "bens",
     "mensagens",
     "filtros",
+    "QRImobCode",
 
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -139,7 +149,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+DATETIME_INPUT_FORMATS = ("%d-%m-%Y")
 
 
 # Default primary key field type

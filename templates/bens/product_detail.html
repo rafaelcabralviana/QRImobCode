@@ -44,6 +44,38 @@
             <p>{{ product.local }}</p>
             <p>{{ product.setor }}</p>
 
+            <h6 class="font-weight-bold">Vida Útil</h6>
+            <p>Compra em, {{ product.data_inicial }}</p>
+            {{ product.dt_inicial }}
+            <html>
+                <head>
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                    google.charts.load("current", {packages:["imagebarchart"]});
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+
+                        var data = google.visualization.arrayToDataTable([
+                        [ 'Depreciado , {{ product.dt_inicial }} meses ', 'A Depreciar , {{ product.dt_final}} meses' , ],
+                        [      {{ product.dt_inicial }},            {{ product.dt_final}}, ],
+                  
+                        ]);
+
+                        var chart = new google.visualization.ImageBarChart(document.getElementById('chart_div'));
+
+                        chart.draw(data, {width: 400, height: 240, min: 0});
+                    }
+                    </script>
+                </head>
+                <body>
+                    <div id="chart_div" style="width: 400px; height: 240px;"></div>
+                </body>
+                </html>
+            
+            <p>Fim da vida útil em ,{{ product.data_final }}</p>
+
+
             <p>
 
                 {% if user.is_superuser %}
@@ -72,5 +104,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
 
 {% endblock content %}

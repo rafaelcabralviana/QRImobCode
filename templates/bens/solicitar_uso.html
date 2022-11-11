@@ -28,7 +28,7 @@
         <h5>{{ bem_solicitado.descricao }} </h5>
 
         
-        {{ uso.bem|as_crispy_field }}
+        {{ uso.bem.as_hidden }}
         {{ uso.email|as_crispy_field }}
         {{ uso.motivo|as_crispy_field }}
         {{ uso.image|as_crispy_field }}

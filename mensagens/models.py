@@ -4,6 +4,7 @@ from model_utils.models import TimeStampedModel
 from autoslug import AutoSlugField
 from django.urls import reverse
 
+
 # Create your models here.
 
 
@@ -55,4 +56,4 @@ class Uso(TimeStampedModel):
 
     def get_absolute_url_uso(self):
         return reverse("mensagens:solicitaruso", kwargs={"slug": self.slug})
-    
+

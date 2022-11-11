@@ -7,7 +7,7 @@ class UsoForm(forms.ModelForm):
         model = Uso
         fields = ['bem', 'email', 'motivo', 'mensagem', 'image']
 
-
+    
 
 class ErroForm(forms.ModelForm):
     class Meta:

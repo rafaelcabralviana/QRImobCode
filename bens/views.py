@@ -5,6 +5,7 @@ from .models import Category, Product
 from .forms import BensForm, ImagemForm
 from django.db.models import Avg, Count, Min, Sum, Prefetch
 from .filters import ListingFilter
+import datetime
 
 
 class ProductDetailView(DetailView):

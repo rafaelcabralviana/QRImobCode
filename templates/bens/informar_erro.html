@@ -28,7 +28,7 @@
         <h5>PATRIMÔNIO : {{ bem_solicitado.codigo }} </h5>
         <h5>{{ bem_solicitado.descricao }} </h5>
 
-        {{ erro_form.bem|as_crispy_field }}
+        {{ erro_form.bem.as_hidden }}
         {{ erro_form.email|as_crispy_field }}
         {{ erro_form.image|as_crispy_field }}
         {{ erro_form.mensagem|as_crispy_field }}
