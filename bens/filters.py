@@ -9,4 +9,4 @@ class ListingFilter(django_filters.FilterSet):
     
     class Meta:
         model = Product
-        fields = {'setor': ['icontains']}
+        fields = {'setor': ['iexact']}

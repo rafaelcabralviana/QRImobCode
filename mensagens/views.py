@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from bens.models import Product
 from django.contrib import messages
-from .models import Uso, Erro
 from .forms import UsoForm, ErroForm
 
 # Create your views here.

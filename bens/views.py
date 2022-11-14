@@ -3,15 +3,15 @@ from django.views.generic import DetailView, ListView
 from django.contrib import messages
 from .models import Category, Product
 from .forms import BensForm, ImagemForm
-from django.db.models import Avg, Count, Min, Sum, Prefetch
+from django.db.models import Count
 from .filters import ListingFilter
-import datetime
+
 
 
 class ProductDetailView(DetailView):
     queryset = Product.available.all()
     
-
+#listagem por categoria
 class ProductListView(ListView):
     category = None
    
@@ -36,7 +36,8 @@ class ProductListView(ListView):
 
         
         return context
-        
+#__________________________________________________________________________
+       
 #função editar bem  
 def editBem(request, slug):
     messages.warning(request, "ATENÇÃO!!  MODO DE EDIÇÃO" )
@@ -71,6 +72,7 @@ def editBem(request, slug):
             }
             
             return render(request, 'bens\editbem.html', context)
+#____________________________________________________________________________
 
 #imagens_bens:
 def imagemBem(request, slug):
@@ -106,6 +108,8 @@ def imagemBem(request, slug):
             }
             
             return render(request, 'bens\imagembem.html', context)
+#______________________________________________________________________________
+
 #função totais
 def totais_list(request):
     
@@ -122,7 +126,7 @@ def totais_list(request):
     
     return render(request, "bens/totais.html", context)
 
-
+#____________________________________________________________________________
 #função django-filters
 def filtros_list(request):
     listings = Product.objects.all()

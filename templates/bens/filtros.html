@@ -30,9 +30,9 @@
 
           {% for obj in listing_filter.qs %}
       <tr>
-        <a href=""></a>
+        <a href="{{ product.get_absolute_url }}"></a>
         
-        <td>{{ obj.codigo }}</td>
+        <td><a href="{{ product.get_absolute_url }}">{{ obj.codigo }}</a></td>
   
         <td>{{ obj.descricao }}</td>
 

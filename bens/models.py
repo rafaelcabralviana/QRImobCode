@@ -2,9 +2,8 @@ from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
-from django.core.validators import MaxValueValidator, MinValueValidator
-from datetime import date
-from dateutil.rrule import rrule, MONTHLY
+import datetime
+
 
 #diretorio- arquivo foto
 def user_directory_path(instance, filename):
@@ -72,6 +71,9 @@ class Product(TimeStampedModel):
     def __str__(self):
         return self.slug
 
+
+
+
     def get_absolute_url(self):
         return reverse("bens:detail", kwargs={"slug": self.slug})
     
@@ -87,14 +89,57 @@ class Product(TimeStampedModel):
     def get_absolute_url_editar(self):
         return reverse("bens:editbem", kwargs={"slug": self.slug})
 
+#CALCULOS VIDA UTIL
+    @property
+    def dt_hoje(self):
+        hoje = datetime.date.today()
+        return hoje
+#data inicial
     @property
     def dt_inicial(self):
-        #hoje = date.today()
-        #dt_inicio = abs((hoje - self.data_inicial))
-        #meses = str(dt_inicio).split(",", 3)[0]
+        hoje = datetime.date.today()
+        datainicial = self.data_inicial
+        diff = hoje - datainicial
+        days = diff.days
+        months, days = days // 30, days
 
-        return 27
+        return months
+
     @property
     def dt_final(self):
-        return 33
+        #VIDA UTIL EM MESES
+        informatica_veiculos = (int(60))
+        maquinas_moveis = (int(120))
+    
+        
+
+        #EQUIPAMENTOS DE INFORMATICA / VEICULOS
+        if self.categoria.pk=="1819" or "2369":
+            hoje = datetime.date.today()
+            datainicial = self.data_inicial
+            diff = hoje - datainicial
+            days = diff.days
+            months, days = days // 30, days
+            adepreciar = informatica_veiculos - months
+            if adepreciar<=0:
+                return 0
+            else:
+                return adepreciar
+                
+
+        #MAQUINAS E EQUIPAMENTOS / MÓVEIS E UTENSILHOS 
+        if self.categoria.pk=="1823" or "1821":
+            hoje = datetime.date.today()
+            datainicial = self.data_inicial
+            diff = hoje - datainicial
+            days = diff.days
+            months, days = days // 30, days
+            adepreciar = maquinas_moveis - months
+            if adepreciar<=0:
+                return 0
+            else:
+                return adepreciar
+
+  
+    
 Product.objects.last

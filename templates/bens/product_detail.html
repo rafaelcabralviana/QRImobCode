@@ -18,6 +18,7 @@
 {% block content %}
 
 {% include 'menssagens.html' %}
+
 <div class="container my-3">
     <div class="row">
         <div class="col-lg-3 mb-3 mb-lg-0">
@@ -35,20 +36,19 @@
             <p>Categoria : {{ product.categoria.name }}</p>
 
             {% if product.responsavel %}
-            <h6 class="font-weight-bold">Coordenador Responsável </h6>
+            <h5 class="font-weight-bold">Coordenador Responsável </h5>
             <p>{{ product.responsavel }}</p>
             {% else %}
 
             {% endif %}
-            <h6 class="font-weight-bold">Localização</h6>
+            <h5 class="font-weight-bold">Localização</h5>
             <p>{{ product.local }}</p>
             <p>{{ product.setor }}</p>
+            
 
-            <h6 class="font-weight-bold">Vida Útil</h6>
-            <p>Compra em, {{ product.data_inicial }}</p>
-            {{ product.dt_inicial }}
-            <html>
-                <head>
+            <h4 class="font-weight-bold">Vida Útil</h4>
+            
+
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script type="text/javascript">
                     google.charts.load("current", {packages:["imagebarchart"]});
@@ -57,27 +57,27 @@
                     function drawChart() {
 
                         var data = google.visualization.arrayToDataTable([
-                        [ 'Depreciado , {{ product.dt_inicial }} meses ', 'A Depreciar , {{ product.dt_final}} meses' , ],
-                        [      {{ product.dt_inicial }},            {{ product.dt_final}}, ],
-                  
-                        ]);
+                        [ '{{ product.dt_inicial }} meses consumidos', ' {{ product.dt_final }} meses restantes' , ],
+                        [      {{ product.dt_inicial }},  {{ product.dt_final }}, ],]);
 
                         var chart = new google.visualization.ImageBarChart(document.getElementById('chart_div'));
 
-                        chart.draw(data, {width: 400, height: 240, min: 0});
+                        chart.draw(data, {'legend':'none', colors: ['#8A0808', '#007bff'], width: 350, height: 70, min: 0});
                     }
                     </script>
-                </head>
-                <body>
-                    <div id="chart_div" style="width: 400px; height: 240px;"></div>
-                </body>
-                </html>
-            
-            <p>Fim da vida útil em ,{{ product.data_final }}</p>
-
+              
+                    <div id="chart_div" style="width: 400px; height: 70px;"></div>
+             
 
             <p>
+                <p><h5><FONT COLOR="#8A0808">█ </FONT>{{ product.dt_inicial }} meses consumidos.</h5></p>
+                <p>De , {{ product.data_inicial }}, até , {{ product.dt_hoje }} </p>
+                <p><h5><FONT COLOR="#007bff">█ </FONT> {{ product.dt_final }} meses restantes.</h5></p>
+                <p>De , {{ product.dt_hoje }}, até, {{ product.data_final }}</p>
+                <p></p>
 
+
+             
                 {% if user.is_superuser %}
                 Voltar para : 
                 <a class="text-decoration-none" href="{{ product.categoria.get_absolute_url }}">

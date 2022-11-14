@@ -9,16 +9,15 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+
+
 from decouple import config 
-
-from django.conf.global_settings import DATETIME_INPUT_FORMATS
-
 
 from pathlib import Path
 
 from django.contrib.messages import constants as messages
 
-import psycopg2.extensions
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=True, cast=bool )
+DEBUG = config("DEBUG", default=False, cast=bool )
 
 
 ALLOWED_HOSTS = ["*"]
@@ -40,8 +39,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "QRImobCode",
     "whitenoise.runserver_nostatic",
-    
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -56,14 +55,14 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "import_export",
     "crispy_forms",
-    "win32com",
+    #"win32com",
     
     #MyAPPS
     "users",
     "bens",
     "mensagens",
     "filtros",
-    "QRImobCode",
+
 
 ]
 
@@ -149,7 +148,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-DATETIME_INPUT_FORMATS = ("%d-%m-%Y")
 
 
 # Default primary key field type
@@ -205,3 +203,6 @@ MESSAGE_TAGS = {
 # A custom variable we created to tell the CustomAccountAdapter whether to
 # allow signups.
 ACCOUNT_ALLOW_SIGNUPS = False
+
+#FORMATS
+#FORMAT_MODULE_PATH = 'QRImobCode.formats'

@@ -9,3 +9,8 @@ django-import-export==3.0.1
 mod-wsgi==4.9.4
 django-crispy-forms==1.14.0
 python-decouple==3.6
+django-datetime-widget
+whitenoise==6.2.0
+win32com==223
+django-six==1.0.4
+pywin32==305

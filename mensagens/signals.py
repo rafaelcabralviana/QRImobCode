@@ -1,6 +1,6 @@
 from mensagens.models import Uso, Erro
 from django.db.models.signals import post_save
-import win32com.client
+#import win32com.client
 import pythoncom
 
 
@@ -37,5 +37,5 @@ def recebe_erro(sender, instance, created, **kwargs):
 
     mail.Send()
 
-post_save.connect(recebe_uso, sender=Uso)
-post_save.connect(recebe_erro, sender =Erro)
+#post_save.connect(recebe_uso, sender=Uso)
+#post_save.connect(recebe_erro, sender =Erro)
